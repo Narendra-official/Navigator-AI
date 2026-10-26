@@ -74,7 +74,7 @@ if (-not (Test-Path $BackendEnv)) {
 # 4. Frontend Environment File
 Write-Host "`n[4/7] Setting up frontend environment configuration..." -ForegroundColor Yellow
 $FrontendEnv = Join-Path $ProjectRoot "frontend\.env.local"
-$FrontendEnvExample = Join-Path $ProjectRoot "frontend\.env.local.example"
+$FrontendEnvExample = Join-Path $ProjectRoot "frontend\.env.example"
 if (-not (Test-Path $FrontendEnv)) {
     if (Test-Path $FrontendEnvExample) {
         Copy-Item $FrontendEnvExample $FrontendEnv

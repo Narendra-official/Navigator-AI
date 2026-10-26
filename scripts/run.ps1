@@ -27,8 +27,10 @@ Write-Host "  Backend started (PID: $backendPid)" -ForegroundColor Green
 
 # 2. Start Frontend Next.js
 Write-Host "[2/2] Starting Next.js Frontend on http://localhost:3000..." -ForegroundColor Yellow
+$nextBuildDir = Join-Path $FrontendDir ".next"
+$npmScript = if (Test-Path $nextBuildDir) { "start" } else { "dev" }
 $frontendProcess = Start-Process -FilePath "npm.cmd" `
-    -ArgumentList "run", "start" `
+    -ArgumentList "run", $npmScript `
     -WorkingDirectory $FrontendDir `
     -PassThru
 

@@ -11,6 +11,12 @@ services:
         value: 3.12.10
       - key: PORT
         value: 8000
+      - key: FRONTEND_ORIGIN
+        value: https://navigator-ai-pink.vercel.app
+      - key: CORS_ORIGINS
+        value: https://navigator-ai-pink.vercel.app,http://localhost:3000
+      - key: OLLAMA_MODEL
+        value: deepseek-r1:8b
 
   # Frontend Web App (Next.js)
   - type: web

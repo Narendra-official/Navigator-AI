@@ -205,13 +205,16 @@ export const SpatialCommandPalette: React.FC<CommandPaletteProps> = ({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-start justify-center pt-20 px-4 bg-black/70 backdrop-blur-md">
+    <div className="fixed inset-0 z-50 flex items-start justify-center pt-20 px-4 bg-black/80 backdrop-blur-xl">
       <div
-        className="w-full max-w-2xl overflow-hidden rounded-2xl border border-slate-700/80 bg-slate-900/95 shadow-2xl shadow-emerald-950/40 text-slate-100 flex flex-col max-h-[75vh]"
+        className="w-full max-w-2xl overflow-hidden rounded-2xl border border-white/[0.12] bg-[#12141a]/95 backdrop-blur-2xl shadow-2xl shadow-black/90 text-slate-100 flex flex-col max-h-[75vh] relative"
         onClick={(e) => e.stopPropagation()}
       >
+        {/* Subtle top edge glow */}
+        <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-emerald-400/50 to-transparent" />
+
         {/* Search header */}
-        <div className="flex items-center gap-3 border-b border-slate-800 px-4 py-3.5 bg-slate-950/60">
+        <div className="flex items-center gap-3 border-b border-white/[0.08] px-4 py-3.5 bg-black/40">
           <Search className="h-5 w-5 text-emerald-400 shrink-0" />
           <input
             type="text"
@@ -221,21 +224,21 @@ export const SpatialCommandPalette: React.FC<CommandPaletteProps> = ({
               setSelectedIndex(0);
             }}
             placeholder="Type a command or jump to workspace view..."
-            className="w-full bg-transparent text-sm text-slate-100 placeholder-slate-500 focus:outline-none"
+            className="w-full bg-transparent text-sm text-slate-100 placeholder-slate-500 focus:outline-none font-body"
             autoFocus
           />
           <button
             onClick={onClose}
-            className="rounded-lg p-1 text-slate-400 hover:bg-slate-800 hover:text-slate-200"
+            className="rounded-lg p-1 text-slate-400 hover:bg-white/[0.08] hover:text-white transition-colors"
           >
             <X className="h-4 w-4" />
           </button>
         </div>
 
         {/* Results List */}
-        <div className="overflow-y-auto p-2 divide-y divide-slate-800/40">
+        <div className="overflow-y-auto p-2 divide-y divide-white/[0.04]">
           {filteredCommands.length === 0 ? (
-            <div className="p-8 text-center text-sm text-slate-500">
+            <div className="p-8 text-center text-sm text-slate-500 font-body">
               No matching workspace actions found for &quot;{searchTerm}&quot;
             </div>
           ) : (
@@ -247,10 +250,10 @@ export const SpatialCommandPalette: React.FC<CommandPaletteProps> = ({
                   key={command.id}
                   onClick={() => command.perform()}
                   onMouseEnter={() => setSelectedIndex(idx)}
-                  className={`w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-left text-xs transition-colors cursor-pointer ${
+                  className={`w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-left text-xs transition-all cursor-pointer ${
                     isSelected
-                      ? 'bg-emerald-500/15 border border-emerald-500/30 text-white'
-                      : 'text-slate-300 hover:bg-slate-800/50'
+                      ? 'bg-emerald-500/15 border border-emerald-500/35 text-white shadow-sm'
+                      : 'text-slate-300 hover:bg-white/[0.04] border border-transparent'
                   }`}
                 >
                   <div className="flex items-center gap-3">

@@ -52,7 +52,7 @@ try {
 # Test 3: Frontend Web Server
 Write-Host "`n[Test 3/4] Testing Frontend Next.js Server..." -ForegroundColor Yellow
 try {
-    $fe = Invoke-WebRequest -Uri $frontendUrl -Method Get -TimeoutSec 5
+    $fe = Invoke-WebRequest -Uri $frontendUrl -Method Get -UseBasicParsing -TimeoutSec 10
     if ($fe.StatusCode -eq 200) {
         Write-Host "  Frontend is serving HTTP 200 OK" -ForegroundColor Green
     } else {
